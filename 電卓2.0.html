@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html><body>
+    <style>
+    button
+    {
+        width: 50px;
+        height: 50px;
+    }
+    </style>
+    <hr>
+<h2>◎作成者情報</h2>
+<p style="margin-left:20px;">
+ymre10
+</p>
+<h2>◎タイトル</h2>
+<p style="margin-left:20px;">
+電卓2.0
+</p>
+<h2>◎解説</h2>
+<p style="margin-left:20px;">
+一般的な電卓の機能に加え√や二乗の機能をつけた電卓。JavaScriptに押したボタンの数字を追加したり『＝』ボタンを押したら計算したり、計算結果を表示して、もし計算に失敗した場合、エラーの内容を表示する関数を作った。bodyの部分にボタンを作り表示されている数字を入力されるようにしたり、四則演算や√、二乗のボタンを押すとその計算ができるように工夫した。
+</p>
+<h2>◎考察</h2>
+<p style="margin-left:20px;">
+プログラムを一から作る際はまずアルゴリズムを考えて作ってみて、エラーを改善していくということを改めて認識した。またボタンを押してその数字が入力されるようにinputを使用したり、functionで電卓として動くための機能を複数用意した。今後は電卓を作った経験から一度作ろうとして諦めたテトリスを作りたいと思う。
+</p>
+<h2>◎感想</h2>
+<p style="margin-left:20px;">
+アルゴリズムを考えてそれを実装する際に分からないところを調べることに時間を費やした。また、実際の電卓と同じ見た目にするために試行錯誤した。反省点としては完成するまで時間がかなり掛かってしまったのでこれから作品を作るときは時間も意識して作りたい。
+</p>
+<hr>
+    <div>電卓</div>
+    <input style="font-size: 20px; text-align: right;" /><br />
+    <script>
+    function update( _v ) //更新する関数
+    {
+        document.querySelector( 'input' ).value = _v
+    }
+
+    function  append( _v ) //数字を追加
+    {
+        document.querySelector( 'input' ).value += _v
+    }
+
+    function calc() // 「＝」ボタンで計算
+    {
+        var v = document.querySelector( 'input' ).value
+        try {
+            var f = new Function( 'return ' + v )
+            update( f().toString() )
+        } catch( _error ) {
+            update( _error ) //計算に失敗した場合のエラーの内容を表示
+        }
+    }
+    </script>
+    <button onclick="update( '' ) " >AC</button>
+    <button onclick="append( '**0.5' )" >√</button>
+    <button onclick="append( '**' )" >^</button>
+    <button onclick="append( '/' )" >/</button><br />
+    <button onclick="append( '7' )" >7</button>
+    <button onclick="append( '8' )" >8</button>
+    <button onclick="append( '9' )" >9</button>
+    <button onclick="append( '*' )" >*</button><br />
+    <button onclick="append( '4' )" >4</button>
+    <button onclick="append( '5' )" >5</button>
+    <button onclick="append( '6' )" >6</button>
+    <button onclick="append( '-' )" >-</button><br />
+    <button onclick="append( '1' )" >1</button>
+    <button onclick="append( '2' )" >2</button>
+    <button onclick="append( '3' )" >3</button>
+    <button onclick="append( '+' )" >+</button><br />
+    <button onclick="append( '0' )" >0</button>
+    <button onclick="append( '.' )" >.</button>
+
+    <button onclick="calc()" style="width:105px;">=</button>
+
+</body></html>
